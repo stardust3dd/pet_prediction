@@ -29,7 +29,7 @@ pet_price= pet_prices[pet_type]
 col1.text(f'This will cost you additional {pet_price} SAR.')
 
 wt_price= 50
-weight= col2.slider('Enter weight of pet: ', 1, 1000, 5)
+weight= col2.slider('Enter weight of pet (in KGs) : ', 1, 1000, 5)
 if weight>10:
   wt_price= 50+(weight-10)
 col2.text(f'This will cost you additional {wt_price} SAR.')
