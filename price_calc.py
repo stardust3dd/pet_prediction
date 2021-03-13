@@ -28,12 +28,6 @@ pet_type= col1.radio('Enter type of pet :', ('Dog', 'Horse', 'Cat', 'Reptile', '
 pet_price= pet_prices[pet_type]
 col1.text(f'This will cost you additional {pet_price} SAR.')
 
-wt_price= 50
-weight= col2.slider('Enter weight of pet (in KGs) : ', 1, 1000, 5)
-if weight>10:
-  wt_price= 50+(weight-10)
-col2.text(f'This will cost you additional {wt_price} SAR.')
-
 vet_price= 0
 if col2.checkbox('I need a vet assessment.'):
   vet_price= 150
@@ -100,7 +94,7 @@ if st.button('Calculate charges : ') :
   else:
     trans_charge= distt*0.35
     # sec1 price
-    total= pet_price+wt_price+vet_price+food_price+rest_price
+    total= pet_price+vet_price+food_price+rest_price
     # sec2 price
     total= total+int_doc+int_crt+ins_chg
     # sec3 price
