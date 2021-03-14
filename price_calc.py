@@ -213,7 +213,7 @@ if col14.checkbox('I have fragile items.'):
   col13.text('This costs additional 150 SAR.')
   total1= 150
 
-if st.button('Calculate charges : ') :
- st.subheader(f'total1 relocation cost : {total1} SAR.')
+if st.button('Calculate charges : ', key='button2') :
+ st.subheader(f'Total relocation cost : {total1} SAR.')
 
 
