@@ -113,5 +113,107 @@ if st.button('Calculate charges : ') :
     total= round(total, 2)
   st.header(f'You will be charged {total} SAR.')
   
+  
+  st.title('Price Calculator (all denominations in SAR)')
+total1= 0
+
+st.subheader('Choose house specifications.')
+col11, col12= st.beta_columns(2)
+
+bedrooms= col11.slider('Enter number of bedrooms : ', 0, 30, 1)
+col11.text('Relocation cost per bedroom: \n120(no assembly), 200(with assembly)')
+if col11.checkbox('I need assembly.', key= '1'):
+  temp= bedrooms*200
+  col11.text(f'This will cost {temp} SAR.')
+else:
+  temp= bedrooms*120
+  col11.text(f'This will cost {temp} SAR.')
+total1= total1+temp
+
+kidrooms= col11.slider('Enter number of kids\' rooms : ', 0, 30, 1)
+col11.text('Relocation cost per kids\' room: \n100(no assembly), 150(with assembly)')
+if col11.checkbox('I need assembly.', key= '2'):
+  temp= kidrooms*150
+  col11.text(f'This will cost {temp} SAR.')
+else:
+  temp= kidrooms*100
+  col11.text(f'This will cost {temp} SAR.')
+total1= total1+temp
+
+livrooms= col12.slider('Enter number of living rooms : ', 0, 30, 1)
+col12.text('Relocation cost per living room: \n140(no assembly), 250(with assembly)')
+if col12.checkbox('I need assembly.', key= '3'):
+  temp= livrooms*250
+  col12.text(f'This will cost {temp} SAR.')
+else:
+  temp= livrooms*140
+  col12.text(f'This will cost {temp} SAR.')
+total1= total1+temp
+
+kitchens= col12.slider('Enter number of kitchens : ', 0, 30, 1)
+col12.text('Relocation cost per kitchen: \n120(no assembly), 500(with assembly)')
+if col12.checkbox('I need assembly.', key= '4'):
+  temp= kitchens*500
+  col12.text(f'This will cost {temp} SAR.')
+else:
+  temp= kitchens*120
+  col12.text(f'This will cost {temp} SAR.')
+total1= total1+temp
+
+col11.subheader('Enter furnishing details.')
+col12.subheader('\n')
+
+acs= col11.slider('Enter number of A/C windows : ', 0, 30, 1)
+temp= acs*130
+col11.text(f'This will cost {temp} SAR.')
+total1= total1+temp
+
+evs= col11.slider('Enter number of elevators : ', 0, 30, 1)
+temp=evs*100
+col11.text(f'This will cost {temp} SAR.')
+total1= total1+temp
+
+fls= col12.slider("Enter number of floors : ", 0, 30, 1)
+temp=fls*50
+col12.text(f'This will cost {temp} SAR.')
+total1= total1+temp
+
+dist= col12.slider('Enter distance in Kilometeres : ', 1, 10000, 1)
+temp=dist*1.7
+col12.text(f'This will cost {temp} SAR.')
+total1= total1+temp
+
+col13, col14= st.beta_columns(2)
+rooms= bedrooms+kidrooms+livrooms+kitchens
+col13.subheader('Enter your choices : ')
+col14.subheader(' ')
+
+if col13.checkbox('I need blanket wrapping.'):
+  col13.text('This costs additional 30 SAR per room.')
+  total1= total1+(rooms*30)
+if col13.checkbox('I need carpenters.'):
+  col13.text('This costs additional 30 SAR per room.')
+  total1= total1+(rooms*30)
+if col13.checkbox('I need cleaning at drop off location.'):
+  col13.text('This costs additional 40 SAR per room.')
+  total1= total1+(rooms*40)
+if col13.checkbox('I need cleaning at pick up location.'):
+  col13.text('This costs additional 30 SAR per room.')
+  total1= total1+(rooms*30)
+if col14.checkbox('I need people for lifting & handling.'):
+  col13.text('This costs additional 30 SAR per room.')
+  total1= total1+(rooms*30)
+if col14.checkbox('I need packing boxes.'):
+  col13.text('This costs additional 30 SAR per room.')
+  total1= total1+(rooms*30)
+if col14.checkbox('I need packaging for items.'):
+  col13.text('This costs additional 30 SAR per room.')
+  total1= total1+(rooms*30)
+if col14.checkbox('I have fragile items.'):
+  col13.text('This costs additional 150 SAR.')
+  total1= 150
+
+if st.button('Calculate charges : ') :
+ st.subheader(f'total1 relocation cost : {total1} SAR.')
 
 
