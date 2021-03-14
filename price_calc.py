@@ -201,16 +201,16 @@ if col13.checkbox('I need cleaning at pick up location.'):
   col13.text('This costs additional 30 SAR per room.')
   total1= total1+(rooms*30)
 if col14.checkbox('I need people for lifting & handling.'):
-  col13.text('This costs additional 30 SAR per room.')
+  col14.text('This costs additional 30 SAR per room.')
   total1= total1+(rooms*30)
 if col14.checkbox('I need packing boxes.'):
-  col13.text('This costs additional 30 SAR per room.')
+  col14.text('This costs additional 30 SAR per room.')
   total1= total1+(rooms*30)
 if col14.checkbox('I need packaging for items.'):
-  col13.text('This costs additional 30 SAR per room.')
+  col14.text('This costs additional 30 SAR per room.')
   total1= total1+(rooms*30)
 if col14.checkbox('I have fragile items.'):
-  col13.text('This costs additional 150 SAR.')
+  col14.text('This costs additional 150 SAR.')
   total1= 150
 
 if st.button('Calculate charges : ', key='button2') :
