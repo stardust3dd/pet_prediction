@@ -82,6 +82,7 @@ date2= col6.date_input('Pickup date : ')
 days= (date2-date1).days
 place2= col6.text_input('Pickup location : ')
 
+total= 0
 if st.button('Calculate charges : ') :
   loc1= geolocator.geocode(place1)
   loc2= geolocator.geocode(place2)
@@ -111,10 +112,19 @@ if st.button('Calculate charges : ') :
     if travel_type=='Out of kingdom':
       total= total*1.5
     total= round(total, 2)
-  st.header(f'You will be charged {total} SAR.')
-  
-  
-  st.title('Price Calculator (all denominations in SAR)')
+    st.header(f'You will be charged {total} SAR.')
+    
+price1= st.number_input('Enter your price : ')
+if price1<(total*0.9):
+  st.text('Quoted price is too low.')
+  st.button('Order is cancelled.')
+else:
+  st.header(f'You will be charged {price1} SAR.')
+  st.text('We are agreed on the quoted price.')
+  st.button('Proceed with order.')   
+
+
+st.title('House Relocation Price Calculator')
 total1= 0
 
 st.subheader('Choose house specifications.')
@@ -178,15 +188,8 @@ temp=fls*50
 col12.text(f'This will cost {temp} SAR.')
 total1= total1+temp
 
-dist= col12.slider('Enter distance in Kilometeres : ', 1, 10000, 1)
-temp=dist*1.7
-col12.text(f'This will cost {temp} SAR.')
-total1= total1+temp
-
 col13, col14= st.beta_columns(2)
 rooms= bedrooms+kidrooms+livrooms+kitchens
-col13.subheader('Enter your choices : ')
-col14.subheader(' ')
 
 if col13.checkbox('I need blanket wrapping.'):
   col13.text('This costs additional 30 SAR per room.')
@@ -213,7 +216,34 @@ if col14.checkbox('I have fragile items.'):
   col14.text('This costs additional 150 SAR.')
   total1= 150
 
+col15, col16= st.beta_columns(2)
+time11= col15.time_input('Order time : ', key= '123')
+date11= col15.date_input('Order date : ', key= '1233')
+place11= col15.text_input('Order location : ', key= '1234')
+time12= col16.time_input('Pickup time : ', key= '1236')
+date12= col16.date_input('Pickup date : ', key= '1237')
+days= (date12-date11).days
+place12= col16.text_input('Pickup location : ', key= '1238')
+
 if st.button('Calculate charges : ', key='button2') :
- st.subheader(f'Total relocation cost : {total1} SAR.')
+  loc11= geolocator.geocode(place11)
+  loc12= geolocator.geocode(place12)
+  lat_lon11= (loc11.latitude, loc11.longitude)
+  lat_lon12= (loc12.latitude, loc12.longitude)
+  distt1= geodesic(lat_lon11, lat_lon12).kilometers
+  st.text(f'Distance between delivery & pickup location : {round(distt1, 2)} kms.')
+  if distt1==0:
+    total1= 0
+  else:
+    total1= total1+(distt1*1.7)
+  total1= round(total1, 2)
+  st.subheader(f'Total relocation cost : {total1} SAR.')
 
-
+price11= st.number_input('Enter your price : ', key= '567')
+if price11<(total1*0.9):
+  st.text('Quoted price is too low.')
+  st.button('Order is cancelled.', key= 'ert')
+else:
+  st.header(f'You will be charged {price11} SAR.')
+  st.text('We are agreed on the quoted price.')
+  st.button('Proceed with order.', key= 'tyu')   
