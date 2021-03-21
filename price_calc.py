@@ -111,17 +111,19 @@ if st.button('Calculate charges : ') :
     # calculate for in kingdom or out of kingdom
     if travel_type=='Out of kingdom':
       total= total*1.5
-    total= round(total, 2)
+    total= int(total)
     st.header(f'You will be charged {total} SAR.')
     
+price1= 0
 price1= st.number_input('Enter your price : ')
-if price1<(total*0.9):
+total2= st.number_input('Enter our price : ', key= 'jkl')
+if price1<(total2*0.9):
   st.text('Quoted price is too low.')
-  st.button('Order is cancelled.')
+  st.subheader('Order is cancelled.')
 else:
   st.header(f'You will be charged {price1} SAR.')
   st.text('We are agreed on the quoted price.')
-  st.button('Proceed with order.')   
+  st.subheader('Proceed with order.')   
 
 
 st.title('House Relocation Price Calculator')
@@ -240,10 +242,12 @@ if st.button('Calculate charges : ', key='button2') :
   st.subheader(f'Total relocation cost : {total1} SAR.')
 
 price11= st.number_input('Enter your price : ', key= '567')
-if price11<(total1*0.9):
+total22= st.number_input('Enter our price : ', key= 'jkl')
+if price11<(total22*0.9):
   st.text('Quoted price is too low.')
   st.button('Order is cancelled.', key= 'ert')
 else:
   st.header(f'You will be charged {price11} SAR.')
   st.text('We are agreed on the quoted price.')
   st.button('Proceed with order.', key= 'tyu')   
+
